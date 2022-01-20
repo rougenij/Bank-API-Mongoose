@@ -29,7 +29,7 @@ const getAllUsers = async (req, res) => {
 
 //Adds a new user to the DB
 const addUser = async (req, res) => {
-  const user = new userModel(req.body);
+  const user = await new userModel(req.body);
   try {
     await user.save();
     res.status(201).send(user);
@@ -54,11 +54,10 @@ const deleteUser = async (req, res) => {
 const withdraw = async (req, res) => {
   const { id, withdraw } = req.body;
   try {
-    const updatedUser = userModel.findById(id);
+    const updatedUser = await userModel.findById(id);
     updatedUser.cash -= withdraw;
-    const user = userModel.findByIdAndUpdate(id, updatedUser, {
+    const user = await userModel.findByIdAndUpdate(id, updatedUser, {
       new: true,
-      runValidators: true,
     });
     if (!user) {
       return res.status(400).send("No User with this ID");
@@ -72,11 +71,10 @@ const withdraw = async (req, res) => {
 const depositing = async (req, res) => {
   const { id, deposit } = req.body;
   try {
-    const updatedUser = userModel.findById(id);
+    const updatedUser = await userModel.findById(id);
     updatedUser.cash += deposit;
-    const user = userModel.findByIdAndUpdate(id, updatedUser, {
+    const user = await userModel.findByIdAndUpdate(id, updatedUser, {
       new: true,
-      runValidators: true,
     });
     if (!user) {
       return res.status(400).send("No User with this ID");
