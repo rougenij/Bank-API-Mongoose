@@ -2,7 +2,6 @@ const express = require("express");
 const {
   getUser,
   addUser,
-  editUser,
   deleteUser,
   getAllUsers,
   withdraw,
@@ -17,7 +16,6 @@ apiRouter.get("/users", getAllUsers);
 //!POST Methods
 apiRouter.post("/users", addUser);
 //!PATCH Methods
-apiRouter.patch("/users", editUser);
 apiRouter.patch("/users/withdraw", withdraw);
 apiRouter.patch("/users/depositing", depositing);
 apiRouter.patch("/users/transferring", transferring);

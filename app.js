@@ -1,17 +1,12 @@
-require("dotenv").config()
-const express = require("express")
-const cors = require("cors")
-const apiRouter = require("./routes/apiRoutes")
-
+const express = require("express");
+require("./src/db/mongoose");
+const apiRouter = require("./src/routes/apiRoutes");
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-app.use(cors());
 app.use(express.json());
-
 app.use("/api", apiRouter);
 
-app.listen(process.env.PORT, () => {
-  console.log("Server is up on port");
+app.listen(PORT, () => {
+  console.log(`Server is up on port: ${PORT}`);
 });
-
-
