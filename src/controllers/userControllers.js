@@ -54,17 +54,23 @@ const deleteUser = async (req, res) => {
 const withdraw = async (req, res) => {
   const { id, withdraw } = req.body;
   try {
+    console.log(id);
     const updatedUser = await userModel.findById(id);
-    updatedUser.cash -= withdraw;
-    const user = await userModel.findByIdAndUpdate(id, updatedUser, {
-      new: true,
-    });
+    if (updatedUser.cash - withdraw < 0) {
+      return res.status(400).send("What you trying to do???");
+    }
+    const newCash = updatedUser.cash - withdraw;
+    const user = await userModel.findByIdAndUpdate(
+      id,
+      { cash: newCash },
+      { new: true }
+    );
     if (!user) {
-      return res.status(400).send("No User with this ID");
+      return res.status(404).send(`No User with the ID "${id}"`);
     }
     res.status(200).send(user);
-  } catch (err) {
-    res.status(500).send(err.message);
+  } catch (e) {
+    res.status(500).send(e.message);
   }
 };
 
@@ -85,7 +91,34 @@ const depositing = async (req, res) => {
   }
 };
 
-const transferring = (req, res) => {};
+const transferring = async (req, res) => {
+  const { id1, id2, transfer } = req.body;
+  try {
+    const user1 = await userModel.findById(id1);
+    const user2 = await userModel.findById(id2);
+    if (!user1 || !user2) {
+      return res.status(404).send("Couldn't find user.");
+    }
+    const newCash1 = user1.cash - transfer;
+    const newCash2 = user2.cash + transfer;
+    const newUser1 = await userModel.findByIdAndUpdate(
+      id1,
+      { cash: newCash1 },
+      { new: true }
+    );
+    const newUser2 = await userModel.findByIdAndUpdate(
+      id2,
+      { cash: newCash2 },
+      { new: true }
+    );
+    if (!newUser1 || !newUser2) {
+      return res.status(404).send("Couldn't find user.");
+    }
+    res.status(200).send(newUser1, newUser2);
+  } catch (e) {
+    res.status(500).send(e.message);
+  }
+};
 
 module.exports = {
   getUser,
