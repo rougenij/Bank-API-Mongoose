@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const Product = mongoose.model("Product", {
+const User = mongoose.model("User", {
   id: {
     required: true,
     unique: true,
@@ -17,4 +17,4 @@ const Product = mongoose.model("Product", {
     min: 0,
   },
 });
-module.exports = Product;
+module.exports = User;

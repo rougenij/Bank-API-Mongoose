@@ -8,31 +8,20 @@ const {
   withdraw,
   depositing,
   transferring,
-  getUserByMoney,
-  getllSortUsers
 } = require("../controllers/userControllers");
 
 const apiRouter = express.Router();
-
-apiRouter.get("/users/statistics", getllSortUsers);
-
+//!GET Methods
 apiRouter.get("/users/:id", getUser);
-
-apiRouter.get("/users/money/:amount", getUserByMoney);
-
 apiRouter.get("/users", getAllUsers);
-
+//!POST Methods
 apiRouter.post("/users", addUser);
-
-apiRouter.put("/users", editUser);
-
-apiRouter.put("/users/withdraw", withdraw);
-
-apiRouter.put("/users/depositing", depositing);
-
-apiRouter.put("/users/transferring", transferring);
-
+//!PATCH Methods
+apiRouter.patch("/users", editUser);
+apiRouter.patch("/users/withdraw", withdraw);
+apiRouter.patch("/users/depositing", depositing);
+apiRouter.patch("/users/transferring", transferring);
+//!DELETE Methods
 apiRouter.delete("/users/:id", deleteUser);
 
-// export default apiRouter;
 module.exports = apiRouter;

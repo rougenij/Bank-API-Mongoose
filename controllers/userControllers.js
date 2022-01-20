@@ -1,15 +1,38 @@
-const uniqid = require("uniqid");
-const { parserClients, addClient, updateClient } = require("../utils/utils");
+const userModel = require("../model/user");
 
-const getUser = (req, res) => {};
+//Get user by ID
+const getUser = async (req, res) => {
+  const _id = req.params.id;
+  try {
+    const user = await userModel.findById(_id);
+    if (!user) {
+      return res.status(400).send("No User with this ID was found");
+    }
+    res.status(200).send(user);
+  } catch (err) {
+    res.status(404).send(err.message);
+  }
+};
 
-const addUser = (req, res) => {};
+//Gets all users from DB
+const getAllUsers = async (req, res) => {
+  try {
+    const users = await userModel.find({});
+    if (!users) {
+      return res.status(400).send("No Users in the bank data");
+    }
+    res.status(200).send(users);
+  } catch (err) {
+    res.status(500).send(err.message);
+  }
+};
+
+//Adds a new user to the DB
+const addUser = async (req, res) => {};
 
 const editUser = (req, res) => {};
 
 const deleteUser = (req, res) => {};
-
-const getAllUsers = (req, res) => {};
 
 const withdraw = (req, res) => {
   const { id, withdraw } = req.body;
