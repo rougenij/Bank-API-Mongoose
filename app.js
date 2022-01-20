@@ -13,7 +13,7 @@ const publicDirectoryPath = path.join(__dirname, "client/build");
 // Setup static directory to serve
 app.use(express.static(publicDirectoryPath));
 
-app.get("*", (req, res) => {
+app.use("*", (req, res) => {
   res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
 
