@@ -1,4 +1,4 @@
-const withdraw = () => {
+const withdraw = (user) => {
   if (Math.abs(selectedUser.cash) === selectedUser.credit) {
     return res.status(400).send("Cannot withdraw anymore");
   }
