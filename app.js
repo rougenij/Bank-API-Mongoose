@@ -1,10 +1,12 @@
 const express = require("express");
 require("./src/db/mongoose");
 const apiRouter = require("./src/routes/apiRoutes");
+const cors = require("cors");
 const app = express();
 const PORT = process.env.PORT || 5000;
 const path = require("path");
 
+app.use(cors());
 app.use(express.json());
 app.use("/api", apiRouter);
 

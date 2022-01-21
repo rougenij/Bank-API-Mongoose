@@ -41,7 +41,7 @@ const addUser = async (req, res) => {
 //Deletes a user
 const deleteUser = async (req, res) => {
   try {
-    const user = await userModel.findByIdAndDelete(req.body.id);
+    const user = await userModel.findByIdAndDelete(req.params.id);
     if (!user) {
       return res.status(404).send("no user with this ID");
     }
