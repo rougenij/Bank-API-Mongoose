@@ -45,7 +45,7 @@ function UserStatus() {
           placeholder="Amount to Withdraw"
           onChange={(e) => setCash(e.target.value)}
         />
-        <button onClick={() => withdrawCash(id, cash)}>Deposit Money</button>
+        <button onClick={() => withdrawCash(id, cash)}>Withdraw Money</button>
       </div>
       <div>
         <h1>Transfer Section</h1>
@@ -56,15 +56,15 @@ function UserStatus() {
         />
         <input
           type="text"
-          placeholder="User's ID"
+          placeholder="Reciever's ID"
           onChange={(e) => setReciverID(e.target.value)}
         />
         <input
           type="number"
-          placeholder="Amount to Deposit"
+          placeholder="Amount to Transfer"
           onChange={(e) => setCash(e.target.value)}
         />
-        <button onClick={() => depositCash(id, cash)}>Deposit Money</button>
+        <button onClick={() => depositCash(id, cash)}>Transfer Money</button>
       </div>
     </div>
   );
