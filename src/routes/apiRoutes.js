@@ -12,7 +12,8 @@ const {
 //! API ROUTER
 const apiRouter = express.Router();
 //!GET Methods
-apiRouter.get("/users/:id", getUser).get("/users", getAllUsers);
+apiRouter.get("/users/:id", getUser);
+apiRouter.get("/users", getAllUsers);
 //!POST Methods
 apiRouter.post("/users", addUser);
 //!PATCH Methods

@@ -11,11 +11,11 @@ export default function Header() {
         <Link to="/users">
           <button>Users</button>
         </Link>
-        <Link to="/addusers">
+        <Link to="/settings">
           <button>Add Users</button>
         </Link>
         <Link to="/userstatus">
-          <button>User Status</button>
+          <button>User Settings</button>
         </Link>
       </header>
     </div>
