@@ -10,7 +10,10 @@ export default function Users() {
     setUser(data);
   };
 
-  useEffect(() => getAllUsers(), []);
+  useEffect(() => {
+    getAllUsers();
+    return () => {};
+  }, []);
 
   const deleteUserHandler = async (e) => {
     const id = e.target.id;

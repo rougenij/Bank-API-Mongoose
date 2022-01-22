@@ -32,9 +32,13 @@ const addUser = async (req, res) => {
   const user = await new userModel(req.body);
   try {
     await user.save();
-    res.status(201).send(user);
+    res
+      .status(201)
+      .send({ status: "success", message: "User has been created" });
   } catch (err) {
-    res.status(400).send(err.message);
+    res
+      .status(400)
+      .send({ status: "failed", message: "Failed to create user" });
   }
 };
 

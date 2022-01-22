@@ -4,6 +4,7 @@ function Settings() {
   const [id, setID] = useState("");
   const [cash, setCash] = useState("");
   const [credit, setCredit] = useState("");
+  const [message, setMessage] = useState("");
 
   return (
     <div>
@@ -18,7 +19,16 @@ function Settings() {
               cash: +cash,
               credit: +credit,
             }),
-          });
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              if (data.status === "success") {
+                setMessage(data.message);
+              } else {
+                setMessage(data.message);
+              }
+            });
         }}
       >
         <div>
@@ -52,11 +62,7 @@ function Settings() {
         </div>
         <input type="submit" value="Add User" />
       </form>
-      <div>
-        {id}
-        {cash}
-        {credit}
-      </div>
+      <div>{message}</div>
     </div>
   );
 }
