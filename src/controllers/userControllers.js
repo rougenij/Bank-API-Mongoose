@@ -29,8 +29,8 @@ const getAllUsers = async (req, res) => {
 
 //Adds a new user to the DB
 const addUser = async (req, res) => {
-  const user = await new userModel(req.body);
   try {
+    const user = await new userModel(req.body);
     await user.save();
     res
       .status(201)

@@ -9,19 +9,19 @@ const {
   transferring,
 } = require("../controllers/userControllers");
 
-//! API ROUTER
+// API ROUTER
 const apiRouter = express.Router();
-//!GET Methods
+//GET Methods
 apiRouter.get("/users/:id", getUser);
 apiRouter.get("/users", getAllUsers);
-//!POST Methods
+//POST Methods
 apiRouter.post("/users", addUser);
-//!PATCH Methods
+//PATCH Methods
 apiRouter
   .patch("/users/withdraw", withdraw)
   .patch("/users/depositing", depositing)
   .patch("/users/transferring", transferring);
-//!DELETE Methods
+//DELETE Methods
 apiRouter.delete("/users/:id", deleteUser);
 
 module.exports = apiRouter;
