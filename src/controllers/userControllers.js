@@ -96,8 +96,12 @@ const depositing = async (req, res) => {
 };
 
 const transferring = async (req, res) => {
-  const { id1, id2, transfer } = req.body;
+  // const { id1, id2, transfer } = req.body;
+  const id1 = req.body.id1;
+  const id2 = req.body.id2;
+  const transfer = req.body.transfer;
   try {
+    console.log(req.body);
     const user1 = await userModel.findById(id1);
     const user2 = await userModel.findById(id2);
     if (!user1 || !user2) {

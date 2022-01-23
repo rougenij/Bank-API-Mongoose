@@ -6,16 +6,26 @@ function UserStatus() {
   const [cash, setCash] = useState("");
   const [recieverID, setReciverID] = useState("");
 
-  const depositCash = async (id, cash) => {
-    myApi.patch("/users/depositing", id, cash);
+  const depositCash = (id, cash) => {
+    myApi.patch("/users/depositing", {
+      id,
+      deposit: cash,
+    });
   };
 
-  const withdrawCash = async (id, cash) => {
-    // myApi.patch("/users/withdraw", id, cash);
+  const withdrawCash = (id, cash) => {
+    myApi.patch("/users/withdraw", {
+      id,
+      withdraw: cash,
+    });
   };
 
-  const transferCash = async (id, revID, cash) => {
-    // myApi.patch("/users/withdraw", id, cash);
+  const transferCash = (id, revID, cash) => {
+    myApi.patch("/users/transferring", {
+      id1: id,
+      id2: revID,
+      transfer: cash,
+    });
   };
   return (
     <div>
@@ -64,7 +74,9 @@ function UserStatus() {
           placeholder="Amount to Transfer"
           onChange={(e) => setCash(e.target.value)}
         />
-        <button onClick={() => depositCash(id, cash)}>Transfer Money</button>
+        <button onClick={() => transferCash(id, recieverID, cash)}>
+          Transfer Money
+        </button>
       </div>
     </div>
   );
